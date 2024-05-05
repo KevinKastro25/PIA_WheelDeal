@@ -5,64 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PIA_WheelDeal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PIA_WheelDeal.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand navbar-warning bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
             <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li>
-                            <a class="nav-link" role="button" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Index">
-                                <h5>Home</h5>
-                            </a>
-                        </li>
-                        <!--Icono persona-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                               <h5>Usuario</h5>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Administracion">Perfil</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Administracion">Iniciar Sesión</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Administracion">Crear Cuenta</a></li>
-                            </ul>
-                        </li>
-                        <!--Icono engranaje-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <h5>Administracion</h5>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <!--link ADMINISTRACIÓN-->
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Administracion">Administración</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                    <div class="d-flex">
-                        <a href="">Acerca de nosotros</a>
-                    </div>
-                </div>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Inicio</a>
+                <partial name="_LoginPartial" />
             </div>
-        </nav>
 
+        </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container-fluid bg-dark">
             &copy; 2024 - PIA_WheelDeal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
