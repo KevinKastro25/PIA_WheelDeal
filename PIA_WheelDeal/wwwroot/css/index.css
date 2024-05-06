@@ -26,3 +26,39 @@ div.col-sm-12.col-lg-4 h1 {
     width: 20px;
     height: 20px;
 }
+.register-container {
+    background-color: #111;
+    color: #FFD700;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.register-form {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .register-form input,
+    .register-form button {
+        background-color: #333;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .register-form button {
+        margin-top: 10px;
+    }
+
+    .register-form .text-danger {
+        color: #FF4500;
+    }
+.logo_register {
+    width: 50px; 
+    height: auto; 
+}
+
+
