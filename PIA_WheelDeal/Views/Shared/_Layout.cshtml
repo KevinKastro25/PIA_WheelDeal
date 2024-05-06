@@ -13,6 +13,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-warning">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">Inicio</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Administracion">Administracion</a>
                 <partial name="_LoginPartial" />
             </div>
 
@@ -23,12 +24,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container-fluid bg-dark">
-            &copy; 2024 - PIA_WheelDeal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

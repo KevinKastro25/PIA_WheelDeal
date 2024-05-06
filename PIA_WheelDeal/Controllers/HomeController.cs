@@ -28,6 +28,11 @@ namespace PIA_WheelDeal.Controllers
             return View();
         }
 
+        public IActionResult Busqueda()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

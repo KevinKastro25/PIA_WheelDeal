@@ -6,7 +6,7 @@ div.row h1, h2 {
 
 div.col-sm-12.col-lg-4 h1 {
     background-color: rgb(87, 13, 13);
-    font-size: bold;
+    font-weight: bold;
     color: white;
     text-decoration: none;
 }
@@ -62,3 +62,10 @@ div.col-sm-12.col-lg-4 h1 {
 }
 
 
+label p, div.col-1 h2 {
+    color: white;
+}
+
+article img {
+    height: 500px;
+}
