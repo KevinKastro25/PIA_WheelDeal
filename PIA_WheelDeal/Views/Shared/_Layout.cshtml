@@ -10,16 +10,20 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning border border-3 border-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">Inicio</a>
-                <a class="navbar-brand" asp-controller="Home" asp-action="Administracion">Administracion</a>
-                <partial name="_LoginPartial" />
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Busca tu auto ideal..." aria-label="Search">
+                    <button class="btn btn-warning btn-outline-dark" type="submit">Search</button>
+                </form>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Administracion">Acerca de nosotros</a>
+                
             </div>
 
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main">
             @RenderBody()
         </main>

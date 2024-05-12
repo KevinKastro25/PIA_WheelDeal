@@ -69,3 +69,11 @@ label p, div.col-1 h2 {
 article img {
     height: 500px;
 }
+
+.desplegable{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
