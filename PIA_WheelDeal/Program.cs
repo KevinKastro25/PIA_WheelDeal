@@ -12,6 +12,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<BaseDeGatosContext>();
+    
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

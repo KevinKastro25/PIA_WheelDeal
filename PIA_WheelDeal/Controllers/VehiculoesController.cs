@@ -100,7 +100,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible")] Vehiculo vehiculo)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible")] VehiculoHR vehiculo)
         {
             if (id != vehiculo.IdProd)
             {
@@ -109,9 +109,19 @@ namespace PIA_WheelDeal.Controllers
 
             if (ModelState.IsValid)
             {
+                Vehiculo vehiculo2 = new Vehiculo
+                {
+                    Nombre = vehiculo.Nombre,
+                    IdTipo = vehiculo.IdTipo,
+                    Precio = vehiculo.Precio,
+                    Matricula = vehiculo.Matricula,
+                    Descripcion = vehiculo.Descripcion,
+                    Disponible = vehiculo.Disponible
+                };
+
                 try
                 {
-                    _context.Update(vehiculo);
+                    _context.Update(vehiculo2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

@@ -31,19 +31,20 @@ namespace PIA_WheelDeal.Controllers
 			return View(await baseDeGatosContext.ToListAsync());
         }
 
-        public IActionResult Privacy()
+		public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Administracion()
+        public IActionResult Acercade()
         {
             return View();
         }
 
-        public IActionResult Busqueda()
+        public IActionResult Compra(int idprod)
         {
-            return View();
+            
+			return View();
         }
 
         public IActionResult Gerencia()

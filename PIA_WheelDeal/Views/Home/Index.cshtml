@@ -4,6 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
+@section Scripts {
+	<script>
+
+
+	</script>
+}
+
 
 <div class="row">
 	<div class="col-xl-2 col-lg-3 col-4 bg-dark text-warning">
@@ -15,20 +22,20 @@
 				<partial name="_LoginPartial"/>
 			</div>
 		</div>
-		<div><!--Segunda Seccion, esta seccion tendrá una validacion si Rol=Empleado-->
+		<div id="validador"><!--Segunda Seccion, esta seccion tendrá una validacion si Rol=Empleado-->
 			<div class="row bg-warning text-dark border border-3 border-dark">
 				<h5>Administracion</h5>
 			</div>
 			<div class="row p-0 bg-dark text-white">
 				<ul>
 					<li class="pt-2 pb-2 mb-1 mt-3 border border-3 border-warning text-center rounded">
-						Estadisticas 
+						Estadisticas
 					</li>
 					<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
 						Solicitudes
 					</li>
 					<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-						Ingresos
+						<a asp-controller="Ventas" asp-action="Index">Ventas</a>
 					</li>
 					<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
 						<a asp-controller="Home" asp-action="Gerencia">Gerencia</a>
@@ -41,8 +48,8 @@
 	<!--Columna con todos los productos-->
 	<div class="col-xl-10 col-lg-9 col-8 border border-primary">
 		<div class="row" id="productosdisplay"><!--Display que displayeara todos los productos,
-		cada columna es un producto, las columnas tienen un breakpoint de 6 por lo
-		que dará la ilusion de ser una doble fila hacia abajo-->
+		cada columna es un producto, las columnas tienen un breakpoint de 4 por lo
+		que dará la ilusion de ser una triple fila hacia abajo-->
 			@foreach (var item in Model)
 			{
 				@if(item.Disponible==true){
@@ -55,7 +62,7 @@
 								<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
 								<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
 								<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-								<a class="btn btn-primary">Comprar</a>
+								<a class="btn btn-primary compra" asp-controller="Home" asp-action="Compra" href="\">Comprar</a>
 							</div>
 						</div>
 					</div>

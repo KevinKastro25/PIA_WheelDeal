@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Models.dbModels;
 
@@ -85,4 +86,6 @@ public partial class BaseDeGatosContext : IdentityDbContext<ApplicationUser, Ide
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+public DbSet<PIA_WheelDeal.Models.dbModels.RolesCatalogo> RolesCatalogo { get; set; } = default!;
 }
