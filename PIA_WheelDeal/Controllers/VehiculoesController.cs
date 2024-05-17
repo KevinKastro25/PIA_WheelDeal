@@ -111,6 +111,7 @@ namespace PIA_WheelDeal.Controllers
             {
                 Vehiculo vehiculo2 = new Vehiculo
                 {
+                    IdProd = vehiculo.IdProd,
                     Nombre = vehiculo.Nombre,
                     IdTipo = vehiculo.IdTipo,
                     Precio = vehiculo.Precio,
