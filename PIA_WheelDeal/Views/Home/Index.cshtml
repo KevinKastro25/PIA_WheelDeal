@@ -75,7 +75,7 @@
 								<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
 								<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
 								<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-								<a class="btn btn-primary compra" asp-controller="Home" asp-action="Compra">Comprar</a>
+								<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
 							</div>
 						</div>
 					</div>

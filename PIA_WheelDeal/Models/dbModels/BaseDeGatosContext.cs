@@ -87,5 +87,4 @@ public partial class BaseDeGatosContext : IdentityDbContext<ApplicationUser, Ide
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-public DbSet<PIA_WheelDeal.Models.dbModels.RolesCatalogo> RolesCatalogo { get; set; } = default!;
 }

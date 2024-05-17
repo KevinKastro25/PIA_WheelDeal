@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PIA_WheelDeal.Models.dbModels;
 
@@ -11,9 +12,11 @@ using PIA_WheelDeal.Models.dbModels;
 namespace PIA_WheelDeal.Migrations
 {
     [DbContext(typeof(BaseDeGatosContext))]
-    partial class BaseDeGatosContextModelSnapshot : ModelSnapshot
+    [Migration("20240517064355_Inio")]
+    partial class Inio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

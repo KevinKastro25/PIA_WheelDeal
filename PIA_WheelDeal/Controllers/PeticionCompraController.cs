@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PIA_WheelDeal.Models;
 using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
@@ -62,13 +63,23 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha,IdEmpleado")] PeticionCompra peticionCompra)
+        public async Task<IActionResult> Create([Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha,IdEmpleado")] PeticionCompraHR peticionCompra)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(peticionCompra);
+                PeticionCompra peticionCompra2 = new PeticionCompra
+                {
+                    IdPeticion = peticionCompra.IdPeticion,
+                    IdInd = peticionCompra.IdInd,
+                    IdProd = peticionCompra.IdProd,
+                    IdStatus = peticionCompra.IdStatus,
+                    Fecha = peticionCompra.Fecha,
+                    IdEmpleado = peticionCompra.IdEmpleado
+
+                };
+                _context.Add(peticionCompra2);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
             ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdEmpleado);
             ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdInd);
