@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StatusCatalogoController : Controller
     {
         private readonly BaseDeGatosContext _context;

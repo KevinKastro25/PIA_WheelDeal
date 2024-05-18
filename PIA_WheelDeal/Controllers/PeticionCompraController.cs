@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +11,10 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
+    
     public class PeticionCompraController : Controller
     {
+        
         private readonly BaseDeGatosContext _context;
 
         public PeticionCompraController(BaseDeGatosContext context)
@@ -25,7 +28,7 @@ namespace PIA_WheelDeal.Controllers
             var baseDeGatosContext = _context.PeticionCompras.Include(p => p.IdEmpleadoNavigation).Include(p => p.IdIndNavigation).Include(p => p.IdProdNavigation).Include(p => p.IdStatusNavigation);
             return View(await baseDeGatosContext.ToListAsync());
         }
-
+        [Authorize]
         // GET: PeticionCompra/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,6 +61,7 @@ namespace PIA_WheelDeal.Controllers
             return View();
         }
 
+        
         // POST: PeticionCompra/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

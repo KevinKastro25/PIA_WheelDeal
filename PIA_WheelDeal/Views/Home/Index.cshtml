@@ -33,7 +33,7 @@
 		@if (await IsInRoleAsync("ADMIN"))
 		{
 			<div id="validador">
-				<!--Segunda Seccion, esta seccion tendrá una validacion si Rol=Empleado-->
+				<!--Segunda Seccion, esta seccion tendrá una validacion si Rol=ADMIN-->
 				<div class="row bg-warning text-dark border border-3 border-dark">
 					<h5>Administracion</h5>
 				</div>
@@ -43,7 +43,7 @@
 							Estadisticas
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-							Solicitudes
+							<a asp-controller="PeticionCompra" asp-action="Index">Solicitudes</a>
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
 							<a asp-controller="Ventas" asp-action="Index">Ventas</a>

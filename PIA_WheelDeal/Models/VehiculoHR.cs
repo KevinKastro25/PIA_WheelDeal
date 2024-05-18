@@ -18,8 +18,7 @@ namespace PIA_WheelDeal.Models
         public bool? Disponible { get; set; }
 
         [JsonIgnore]
-        
         [IgnoreDataMember]
-        public SelectList? TiposCatalogo {  get; set; }
+        public SelectList? TiposCatalogo { get; set; }
     }
 }

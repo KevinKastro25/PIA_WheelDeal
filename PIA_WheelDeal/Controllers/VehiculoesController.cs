@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
+    
     public class VehiculoesController : Controller
     {
         private readonly BaseDeGatosContext _context;
@@ -27,6 +29,7 @@ namespace PIA_WheelDeal.Controllers
         }
 
         // GET: Vehiculoes/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,7 +60,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible")] VehiculoHR vehiculo)
+        public async Task<IActionResult> Create([Bind("IdProd,Nombre,IdTipo,Tipo,Precio,Matricula,Descripcion,Disponible")] VehiculoHR vehiculo)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +77,7 @@ namespace PIA_WheelDeal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTipo"] = new SelectList(_context.TiposCatalogos, "IdTipo", "IdTipo", vehiculo.IdTipo);
+            vehiculo.TiposCatalogo = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
             return View(vehiculo);
         }
 
