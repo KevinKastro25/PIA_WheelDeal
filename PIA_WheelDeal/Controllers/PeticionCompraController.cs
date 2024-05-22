@@ -52,12 +52,12 @@ namespace PIA_WheelDeal.Controllers
         }
 
         // GET: PeticionCompra/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "IdProd");
-            ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "IdStatus");
+            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "UserName");
+            ViewData["IdInd"] = new SelectList(_context.Users, "Id", "UserName");
+            ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "Nombre");
+            ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "Descripcion");
             return View();
         }
 

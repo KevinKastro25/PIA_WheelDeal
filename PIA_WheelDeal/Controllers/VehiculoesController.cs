@@ -11,7 +11,7 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
-    
+
     public class VehiculoesController : Controller
     {
         private readonly BaseDeGatosContext _context;
@@ -51,8 +51,11 @@ namespace PIA_WheelDeal.Controllers
         // GET: Vehiculoes/Create
         public IActionResult Create()
         {
-            ViewData["IdTipo"] = new SelectList(_context.TiposCatalogos, "IdTipo", "IdTipo");
-            return View();
+            VehiculoHR vehiculotipo = new VehiculoHR
+            {
+                TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo")
+            };
+            return View(vehiculotipo);
         }
 
         // POST: Vehiculoes/Create
@@ -60,7 +63,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProd,Nombre,IdTipo,Tipo,Precio,Matricula,Descripcion,Disponible")] VehiculoHR vehiculo)
+        public async Task<IActionResult> Create(VehiculoHR vehiculo)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +80,7 @@ namespace PIA_WheelDeal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            vehiculo.TiposCatalogo = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
+            vehiculo.TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
             return View(vehiculo);
         }
 
@@ -103,7 +106,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible")] VehiculoHR vehiculo)
+        public async Task<IActionResult> Edit(int id, VehiculoHR vehiculo)
         {
             if (id != vehiculo.IdProd)
             {
@@ -141,7 +144,7 @@ namespace PIA_WheelDeal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTipo"] = new SelectList(_context.TiposCatalogos, "IdTipo", "IdTipo", vehiculo.IdTipo);
+            vehiculo.TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
             return View(vehiculo);
         }
 

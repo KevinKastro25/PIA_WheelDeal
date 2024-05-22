@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Disponible)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdTipoNavigation)
+                @Html.DisplayNameFor(model => model.IdTipoNavigation.Tipo)
             </th>
             <th></th>
         </tr>
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Disponible)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdTipoNavigation.IdTipo)
+                @Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdProd">Edit</a> |

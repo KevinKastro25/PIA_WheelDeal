@@ -19,6 +19,6 @@ namespace PIA_WheelDeal.Models
 
         [JsonIgnore]
         [IgnoreDataMember]
-        public SelectList? TiposCatalogo { get; set; }
+        public SelectList? TiposCatalogos { get; set; }
     }
 }

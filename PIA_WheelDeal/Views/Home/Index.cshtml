@@ -66,19 +66,39 @@
 			@foreach (var item in Model)
 			{
 				@if(item.Disponible==true){
-					<div class="col-4">
-						<div class="card" style="width: 18rem;">
-							<img src="/img/carro1.png" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
-								<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
-								<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
-								<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
-								<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-								<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
+					@if(item.IdTipo == 1)
+					{
+						<div class="col-4">
+							<div class="card" style="width: 18rem;">
+								<img src="/img/carro1.png" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
+									<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
+									<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
+									<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
+									<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+									<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
+								</div>
 							</div>
 						</div>
-					</div>
+					}
+					else
+					{
+						<div class="col-4">
+							<div class="card" style="width: 18rem;">
+								<img src="/img/moto1.png" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
+									<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
+									<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
+									<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
+									<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+									<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
+								</div>
+							</div>
+						</div>
+					}
+					
 				}
 				
 			}
