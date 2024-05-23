@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Models.dbModels;
 
@@ -17,9 +16,6 @@ public partial class BaseDeGatosContext : IdentityDbContext<ApplicationUser, Ide
         : base(options)
     {
     }
-
-    public virtual DbSet<ImgVehiculo> ImgVehiculos { get; set; }
-
     public virtual DbSet<PeticionCompra> PeticionCompras { get; set; }
 
     public virtual DbSet<StatusCatalogo> StatusCatalogos { get; set; }
@@ -32,22 +28,12 @@ public partial class BaseDeGatosContext : IdentityDbContext<ApplicationUser, Ide
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+		base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<ImgVehiculo>(entity =>
-        {
-            entity.Property(e => e.IdImg).ValueGeneratedNever();
-
-            entity.HasOne(d => d.IdProdNavigation).WithMany(p => p.ImgVehiculos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ImgVehiculos_Vehiculos");
-        });
 
         modelBuilder.Entity<PeticionCompra>(entity =>
         {
-            entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.PeticionCompraIdEmpleadoNavigations).HasConstraintName("FK_PeticionCompra_Individuos3");
-
-            entity.HasOne(d => d.IdIndNavigation).WithMany(p => p.PeticionCompraIdIndNavigations)
+            entity.HasOne(d => d.IdIndNavigation).WithMany(p => p.PeticionCompras)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PeticionCompra_Individuos2");
 
@@ -86,5 +72,4 @@ public partial class BaseDeGatosContext : IdentityDbContext<ApplicationUser, Ide
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
 }

@@ -34,12 +34,13 @@ public partial class Vehiculo
     [Column("disponible")]
     public bool? Disponible { get; set; }
 
+    [Column("img")]
+    [StringLength(500)]
+    public string? Img { get; set; }
+
     [ForeignKey("IdTipo")]
     [InverseProperty("Vehiculos")]
     public virtual TiposCatalogo IdTipoNavigation { get; set; } = null!;
-
-    [InverseProperty("IdProdNavigation")]
-    public virtual ICollection<ImgVehiculo> ImgVehiculos { get; set; } = new List<ImgVehiculo>();
 
     [InverseProperty("IdProdNavigation")]
     public virtual ICollection<PeticionCompra> PeticionCompras { get; set; } = new List<PeticionCompra>();
