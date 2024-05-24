@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PIA_WheelDeal.Models;
 using PIA_WheelDeal.Models.dbModels;
+using PIA_WheelDeal.Models.DTO;
 
 namespace PIA_WheelDeal.Controllers
 {

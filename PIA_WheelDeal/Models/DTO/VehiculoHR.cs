@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
-namespace PIA_WheelDeal.Models
+namespace PIA_WheelDeal.Models.DTO
 {
     public class VehiculoHR
     {
@@ -16,9 +16,9 @@ namespace PIA_WheelDeal.Models
         public string Matricula { get; set; } = null!;
         public string? Descripcion { get; set; }
         public bool? Disponible { get; set; }
-		public string? Img { get; set; }
+        public string? Img { get; set; }
 
-		[JsonIgnore]
+        [JsonIgnore]
         [IgnoreDataMember]
         public SelectList? TiposCatalogo { get; set; }
     }
