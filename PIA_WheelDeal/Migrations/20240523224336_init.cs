@@ -32,7 +32,6 @@ namespace PIA_WheelDeal.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdRol = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -125,8 +124,8 @@ namespace PIA_WheelDeal.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -170,8 +169,8 @@ namespace PIA_WheelDeal.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -196,7 +195,8 @@ namespace PIA_WheelDeal.Migrations
                     precio = table.Column<int>(type: "int", nullable: false),
                     matricula = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     descripcion = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    disponible = table.Column<bool>(type: "bit", nullable: true)
+                    disponible = table.Column<bool>(type: "bit", nullable: true),
+                    img = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -209,24 +209,6 @@ namespace PIA_WheelDeal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImgVehiculos",
-                columns: table => new
-                {
-                    id_img = table.Column<int>(type: "int", nullable: false),
-                    img = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    id_prod = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImgVehiculos", x => x.id_img);
-                    table.ForeignKey(
-                        name: "FK_ImgVehiculos_Vehiculos",
-                        column: x => x.id_prod,
-                        principalTable: "Vehiculos",
-                        principalColumn: "id_prod");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PeticionCompra",
                 columns: table => new
                 {
@@ -235,8 +217,7 @@ namespace PIA_WheelDeal.Migrations
                     id_ind = table.Column<int>(type: "int", nullable: false),
                     id_prod = table.Column<int>(type: "int", nullable: false),
                     id_status = table.Column<int>(type: "int", nullable: false),
-                    fecha = table.Column<DateTime>(type: "datetime", nullable: false),
-                    id_empleado = table.Column<int>(type: "int", nullable: true)
+                    fecha = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -244,11 +225,6 @@ namespace PIA_WheelDeal.Migrations
                     table.ForeignKey(
                         name: "FK_PeticionCompra_Individuos2",
                         column: x => x.id_ind,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PeticionCompra_Individuos3",
-                        column: x => x.id_empleado,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -330,16 +306,6 @@ namespace PIA_WheelDeal.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImgVehiculos_id_prod",
-                table: "ImgVehiculos",
-                column: "id_prod");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PeticionCompra_id_empleado",
-                table: "PeticionCompra",
-                column: "id_empleado");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PeticionCompra_id_ind",
                 table: "PeticionCompra",
                 column: "id_ind");
@@ -387,9 +353,6 @@ namespace PIA_WheelDeal.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ImgVehiculos");
 
             migrationBuilder.DropTable(
                 name: "PeticionCompra");

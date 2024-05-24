@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PIA_WheelDeal.Models.dbModels.Venta>
+﻿@model IEnumerable<PIA_WheelDeal.Models.dbModels.PeticionCompra>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,12 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Monto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th>
@@ -27,18 +21,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdProdNavigation)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdStatusNavigation)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                <strong>$</strong>@Html.DisplayFor(modelItem => item.Monto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
@@ -49,9 +40,12 @@
                 @Html.DisplayFor(modelItem => item.IdProdNavigation.IdProd)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdIngreso">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdIngreso">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdIngreso">Delete</a>
+                @Html.DisplayFor(modelItem => item.IdStatusNavigation.IdStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPeticion">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPeticion">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPeticion">Delete</a>
             </td>
         </tr>
 }

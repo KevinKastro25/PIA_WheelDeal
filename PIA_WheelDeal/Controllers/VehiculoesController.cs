@@ -11,7 +11,8 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
-
+    //Controlador Exclusivo de Admins
+    [Authorize(Roles = "Admin")]
     public class VehiculoesController : Controller
     {
         private readonly BaseDeGatosContext _context;
@@ -29,7 +30,6 @@ namespace PIA_WheelDeal.Controllers
         }
 
         // GET: Vehiculoes/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,41 +48,42 @@ namespace PIA_WheelDeal.Controllers
             return View(vehiculo);
         }
 
-        // GET: Vehiculoes/Create
-        public IActionResult Create()
-        {
-            VehiculoHR vehiculotipo = new VehiculoHR
-            {
-                TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo")
-            };
-            return View(vehiculotipo);
-        }
+		// GET: Vehiculoes/Create
+		public IActionResult Create()
+		{
+			VehiculoHR vehiculotipo = new VehiculoHR
+			{
+				TiposCatalogo = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo")
+			};
+			return View(vehiculotipo);
+		}
 
-        // POST: Vehiculoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+		// POST: Vehiculoes/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VehiculoHR vehiculo)
         {
             if (ModelState.IsValid)
             {
-                Vehiculo vehiculo1 = new Vehiculo
-                {
-                    Nombre = vehiculo.Nombre,
-                    IdTipo = vehiculo.IdTipo,
-                    Precio = vehiculo.Precio,
-                    Matricula = vehiculo.Matricula,
-                    Descripcion = vehiculo.Descripcion,
-                    Disponible = vehiculo.Disponible
-                };
-                _context.Vehiculos.Add(vehiculo1);
+				Vehiculo vehiculo1 = new Vehiculo
+				{
+					Nombre = vehiculo.Nombre,
+					IdTipo = vehiculo.IdTipo,
+					Precio = vehiculo.Precio,
+					Matricula = vehiculo.Matricula,
+					Descripcion = vehiculo.Descripcion,
+					Disponible = vehiculo.Disponible,
+                    Img = vehiculo.Img
+				};
+				_context.Add(vehiculo1);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            vehiculo.TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
-            return View(vehiculo);
-        }
+			vehiculo.TiposCatalogo = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
+			return View(vehiculo);
+		}
 
         // GET: Vehiculoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -106,7 +107,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, VehiculoHR vehiculo)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible,Img")] Vehiculo vehiculo)
         {
             if (id != vehiculo.IdProd)
             {
@@ -115,18 +116,19 @@ namespace PIA_WheelDeal.Controllers
 
             if (ModelState.IsValid)
             {
-                Vehiculo vehiculo2 = new Vehiculo
-                {
-                    IdProd = vehiculo.IdProd,
-                    Nombre = vehiculo.Nombre,
-                    IdTipo = vehiculo.IdTipo,
-                    Precio = vehiculo.Precio,
-                    Matricula = vehiculo.Matricula,
-                    Descripcion = vehiculo.Descripcion,
-                    Disponible = vehiculo.Disponible
+				Vehiculo vehiculo2 = new Vehiculo
+				{
+					IdProd = vehiculo.IdProd,
+					Nombre = vehiculo.Nombre,
+					IdTipo = vehiculo.IdTipo,
+					Precio = vehiculo.Precio,
+					Matricula = vehiculo.Matricula,
+					Descripcion = vehiculo.Descripcion,
+					Disponible = vehiculo.Disponible,
+                    Img = vehiculo.Img
                 };
 
-                try
+				try
                 {
                     _context.Update(vehiculo2);
                     await _context.SaveChangesAsync();
@@ -144,7 +146,7 @@ namespace PIA_WheelDeal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            vehiculo.TiposCatalogos = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo", vehiculo.IdTipo);
+            ViewData["IdTipo"] = new SelectList(_context.TiposCatalogos, "IdTipo", "IdTipo", vehiculo.IdTipo);
             return View(vehiculo);
         }
 

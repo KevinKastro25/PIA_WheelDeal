@@ -28,7 +28,10 @@
                 @Html.DisplayNameFor(model => model.Disponible)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdTipoNavigation.Tipo)
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoNavigation)
             </th>
             <th></th>
         </tr>
@@ -52,11 +55,14 @@
                 @Html.DisplayFor(modelItem => item.Disponible)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)
+                    <img class="w-25" src="@Html.DisplayFor(modelItem => item.Img)" /> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoNavigation.IdTipo)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdProd">Edit</a> |
-                
+                <a asp-action="Details" asp-route-id="@item.IdProd">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdProd">Delete</a>
             </td>
         </tr>

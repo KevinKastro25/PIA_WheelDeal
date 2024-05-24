@@ -16,9 +16,10 @@ namespace PIA_WheelDeal.Models
         public string Matricula { get; set; } = null!;
         public string? Descripcion { get; set; }
         public bool? Disponible { get; set; }
+		public string? Img { get; set; }
 
-        [JsonIgnore]
+		[JsonIgnore]
         [IgnoreDataMember]
-        public SelectList? TiposCatalogos { get; set; }
+        public SelectList? TiposCatalogo { get; set; }
     }
 }

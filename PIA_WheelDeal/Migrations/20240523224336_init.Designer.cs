@@ -12,8 +12,8 @@ using PIA_WheelDeal.Models.dbModels;
 namespace PIA_WheelDeal.Migrations
 {
     [DbContext(typeof(BaseDeGatosContext))]
-    [Migration("20240517064355_Inio")]
-    partial class Inio
+    [Migration("20240523224336_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,9 +180,6 @@ namespace PIA_WheelDeal.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IdRol")
-                        .HasColumnType("int");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -229,29 +226,6 @@ namespace PIA_WheelDeal.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.ImgVehiculo", b =>
-                {
-                    b.Property<int>("IdImg")
-                        .HasColumnType("int")
-                        .HasColumnName("id_img");
-
-                    b.Property<int>("IdProd")
-                        .HasColumnType("int")
-                        .HasColumnName("id_prod");
-
-                    b.Property<string>("Img")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("img");
-
-                    b.HasKey("IdImg");
-
-                    b.HasIndex("IdProd");
-
-                    b.ToTable("ImgVehiculos");
-                });
-
             modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.PeticionCompra", b =>
                 {
                     b.Property<int>("IdPeticion")
@@ -264,10 +238,6 @@ namespace PIA_WheelDeal.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime")
                         .HasColumnName("fecha");
-
-                    b.Property<int?>("IdEmpleado")
-                        .HasColumnType("int")
-                        .HasColumnName("id_empleado");
 
                     b.Property<int>("IdInd")
                         .HasColumnType("int")
@@ -282,8 +252,6 @@ namespace PIA_WheelDeal.Migrations
                         .HasColumnName("id_status");
 
                     b.HasKey("IdPeticion");
-
-                    b.HasIndex("IdEmpleado");
 
                     b.HasIndex("IdInd");
 
@@ -355,6 +323,11 @@ namespace PIA_WheelDeal.Migrations
                     b.Property<int>("IdTipo")
                         .HasColumnType("int")
                         .HasColumnName("id_tipo");
+
+                    b.Property<string>("Img")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("img");
 
                     b.Property<string>("Matricula")
                         .IsRequired()
@@ -472,24 +445,8 @@ namespace PIA_WheelDeal.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.ImgVehiculo", b =>
-                {
-                    b.HasOne("PIA_WheelDeal.Models.dbModels.Vehiculo", "IdProdNavigation")
-                        .WithMany("ImgVehiculos")
-                        .HasForeignKey("IdProd")
-                        .IsRequired()
-                        .HasConstraintName("FK_ImgVehiculos_Vehiculos");
-
-                    b.Navigation("IdProdNavigation");
-                });
-
             modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.PeticionCompra", b =>
                 {
-                    b.HasOne("PIA_WheelDeal.Models.dbModels.ApplicationUser", "IdEmpleadoNavigation")
-                        .WithMany("PeticionCompraIdEmpleadoNavigations")
-                        .HasForeignKey("IdEmpleado")
-                        .HasConstraintName("FK_PeticionCompra_Individuos3");
-
                     b.HasOne("PIA_WheelDeal.Models.dbModels.ApplicationUser", "IdIndNavigation")
                         .WithMany("PeticionCompraIdIndNavigations")
                         .HasForeignKey("IdInd")
@@ -507,8 +464,6 @@ namespace PIA_WheelDeal.Migrations
                         .HasForeignKey("IdStatus")
                         .IsRequired()
                         .HasConstraintName("FK_PeticionCompra_StatusCatalogo");
-
-                    b.Navigation("IdEmpleadoNavigation");
 
                     b.Navigation("IdIndNavigation");
 
@@ -549,8 +504,6 @@ namespace PIA_WheelDeal.Migrations
 
             modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.ApplicationUser", b =>
                 {
-                    b.Navigation("PeticionCompraIdEmpleadoNavigations");
-
                     b.Navigation("PeticionCompraIdIndNavigations");
 
                     b.Navigation("Venta");
@@ -568,8 +521,6 @@ namespace PIA_WheelDeal.Migrations
 
             modelBuilder.Entity("PIA_WheelDeal.Models.dbModels.Vehiculo", b =>
                 {
-                    b.Navigation("ImgVehiculos");
-
                     b.Navigation("PeticionCompras");
 
                     b.Navigation("Venta");

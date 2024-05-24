@@ -18,8 +18,8 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdTipo" class="control-label">Tipo</label>
-                <select asp-for="IdTipo" class="form-control" asp-items="Model.TiposCatalogos"></select>
+                <label asp-for="IdTipo" class="control-label"></label>
+                <select asp-for="IdTipo" class ="form-control" asp-items="Model.TiposCatalogo"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Precio" class="control-label"></label>
@@ -36,10 +36,15 @@
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Disponible" /> @Html.DisplayNameFor(model => model.Disponible)
-                </label>
+            <div class="form-group">
+                <label asp-for="Disponible" class="control-label"></label>
+                <input asp-for="Disponible" class="form-control" />
+                <span asp-validation-for="Disponible" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Img" class="control-label"></label>
+                <input asp-for="Img" class="form-control" />
+                <span asp-validation-for="Img" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -47,8 +52,6 @@
         </form>
     </div>
 </div>
-
-
 
 <div>
     <a asp-action="Index">Back to List</a>

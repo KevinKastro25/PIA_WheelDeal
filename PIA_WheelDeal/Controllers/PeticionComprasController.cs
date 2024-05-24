@@ -2,34 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PIA_WheelDeal.Models;
 using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
-    
-    public class PeticionCompraController : Controller
+    public class PeticionComprasController : Controller
     {
-        
         private readonly BaseDeGatosContext _context;
 
-        public PeticionCompraController(BaseDeGatosContext context)
+        public PeticionComprasController(BaseDeGatosContext context)
         {
             _context = context;
         }
 
-        // GET: PeticionCompra
+        // GET: PeticionCompras
         public async Task<IActionResult> Index()
         {
-            var baseDeGatosContext = _context.PeticionCompras.Include(p => p.IdEmpleadoNavigation).Include(p => p.IdIndNavigation).Include(p => p.IdProdNavigation).Include(p => p.IdStatusNavigation);
+            var baseDeGatosContext = _context.PeticionCompras.Include(p => p.IdIndNavigation).Include(p => p.IdProdNavigation).Include(p => p.IdStatusNavigation);
             return View(await baseDeGatosContext.ToListAsync());
         }
-        [Authorize]
-        // GET: PeticionCompra/Details/5
+
+        // GET: PeticionCompras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,7 +34,6 @@ namespace PIA_WheelDeal.Controllers
             }
 
             var peticionCompra = await _context.PeticionCompras
-                .Include(p => p.IdEmpleadoNavigation)
                 .Include(p => p.IdIndNavigation)
                 .Include(p => p.IdProdNavigation)
                 .Include(p => p.IdStatusNavigation)
@@ -51,48 +46,35 @@ namespace PIA_WheelDeal.Controllers
             return View(peticionCompra);
         }
 
-        // GET: PeticionCompra/Create
-        public IActionResult Create(int? id)
+        // GET: PeticionCompras/Create
+        public IActionResult Create()
         {
-            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "UserName");
-            ViewData["IdInd"] = new SelectList(_context.Users, "Id", "UserName");
-            ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "Nombre");
-            ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "Descripcion");
+            ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "IdProd");
+            ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "IdStatus");
             return View();
         }
 
-        
-        // POST: PeticionCompra/Create
+        // POST: PeticionCompras/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha,IdEmpleado")] PeticionCompraHR peticionCompra)
+        public async Task<IActionResult> Create([Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha")] PeticionCompra peticionCompra)
         {
             if (ModelState.IsValid)
             {
-                PeticionCompra peticionCompra2 = new PeticionCompra
-                {
-                    IdPeticion = peticionCompra.IdPeticion,
-                    IdInd = peticionCompra.IdInd,
-                    IdProd = peticionCompra.IdProd,
-                    IdStatus = peticionCompra.IdStatus,
-                    Fecha = peticionCompra.Fecha,
-                    IdEmpleado = peticionCompra.IdEmpleado
-
-                };
-                _context.Add(peticionCompra2);
+                _context.Add(peticionCompra);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdEmpleado);
             ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdInd);
             ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "IdProd", peticionCompra.IdProd);
             ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "IdStatus", peticionCompra.IdStatus);
             return View(peticionCompra);
         }
 
-        // GET: PeticionCompra/Edit/5
+        // GET: PeticionCompras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,19 +87,18 @@ namespace PIA_WheelDeal.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdEmpleado);
             ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdInd);
             ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "IdProd", peticionCompra.IdProd);
             ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "IdStatus", peticionCompra.IdStatus);
             return View(peticionCompra);
         }
 
-        // POST: PeticionCompra/Edit/5
+        // POST: PeticionCompras/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha,IdEmpleado")] PeticionCompra peticionCompra)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha")] PeticionCompra peticionCompra)
         {
             if (id != peticionCompra.IdPeticion)
             {
@@ -144,14 +125,13 @@ namespace PIA_WheelDeal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdEmpleado);
             ViewData["IdInd"] = new SelectList(_context.Users, "Id", "Id", peticionCompra.IdInd);
             ViewData["IdProd"] = new SelectList(_context.Vehiculos, "IdProd", "IdProd", peticionCompra.IdProd);
             ViewData["IdStatus"] = new SelectList(_context.StatusCatalogos, "IdStatus", "IdStatus", peticionCompra.IdStatus);
             return View(peticionCompra);
         }
 
-        // GET: PeticionCompra/Delete/5
+        // GET: PeticionCompras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -160,7 +140,6 @@ namespace PIA_WheelDeal.Controllers
             }
 
             var peticionCompra = await _context.PeticionCompras
-                .Include(p => p.IdEmpleadoNavigation)
                 .Include(p => p.IdIndNavigation)
                 .Include(p => p.IdProdNavigation)
                 .Include(p => p.IdStatusNavigation)
@@ -173,7 +152,7 @@ namespace PIA_WheelDeal.Controllers
             return View(peticionCompra);
         }
 
-        // POST: PeticionCompra/Delete/5
+        // POST: PeticionCompras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

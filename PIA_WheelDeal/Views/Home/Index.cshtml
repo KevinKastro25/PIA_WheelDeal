@@ -4,6 +4,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@* SECCION CON LAS FUNCIONES DE ESTA VISTA *@
 @functions{
 		public async Task<bool> IsInRoleAsync(string role)
 		{
@@ -11,12 +12,16 @@
 			return user != null && await UserManager.IsInRoleAsync(user, role);
 		}
 }
-
+@* SECCION CON LOS JAVASCRIPT QUE USARÁ ESTA VISTA *@
 @section Scripts {
 	<script>
 
 
 	</script>
+}
+@* SECCION CON LOS ESTILOS QUE USARÁ ESTA VISTA *@
+@section Styles{
+	<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 }
 
 
@@ -43,7 +48,7 @@
 							Estadisticas
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-							<a asp-controller="PeticionCompra" asp-action="Index">Solicitudes</a>
+							<a asp-controller="PeticionCompras" asp-action="Index">Solicitudes</a>
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
 							<a asp-controller="Ventas" asp-action="Index">Ventas</a>
@@ -66,41 +71,20 @@
 			@foreach (var item in Model)
 			{
 				@if(item.Disponible==true){
-					@if(item.IdTipo == 1)
-					{
-						<div class="col-4">
-							<div class="card" style="width: 18rem;">
-								<img src="/img/carro1.png" class="card-img-top" alt="...">
+					<div class="col-4 pt-4">
+							<div class="card" style="width: 30rem; height: 100%;">
+							<img src="@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
 									<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
 									<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
 									<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
 									<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-									<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
+									<a class="btn btn-primary compra" asp-controller="Peticiones" asp-action="Index" asp-route-id="@item.IdProd">Comprar</a>
 								</div>
 							</div>
 						</div>
-					}
-					else
-					{
-						<div class="col-4">
-							<div class="card" style="width: 18rem;">
-								<img src="/img/moto1.png" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
-									<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
-									<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
-									<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
-									<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-									<a class="btn btn-primary compra" asp-controller="Vehiculoes" asp-action="Details" asp-route-id="@item.IdProd">Comprar</a>
-								</div>
-							</div>
-						</div>
-					}
-					
 				}
-				
 			}
 		</div>
 	</div>

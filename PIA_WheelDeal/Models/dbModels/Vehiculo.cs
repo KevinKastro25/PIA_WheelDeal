@@ -8,42 +8,43 @@ namespace PIA_WheelDeal.Models.dbModels;
 
 public partial class Vehiculo
 {
-    [Key]
-    [Column("id_prod")]
-    public int IdProd { get; set; }
+	[Key]
+	[Column("id_prod")]
+	public int IdProd { get; set; }
 
-    [Column("nombre")]
-    [StringLength(50)]
-    public string Nombre { get; set; } = null!;
+	[Column("nombre")]
+	[StringLength(50)]
+	public string Nombre { get; set; } = null!;
 
-    [Column("id_tipo")]
-    public int IdTipo { get; set; }
+	[Column("id_tipo")]
+	public int IdTipo { get; set; }
 
-    [Column("precio")]
-    public int Precio { get; set; }
+	[Column("precio")]
+	public int Precio { get; set; }
 
-    [Column("matricula")]
-    [StringLength(50)]
-    [Unicode(false)]
-    public string Matricula { get; set; } = null!;
+	[Column("matricula")]
+	[StringLength(50)]
+	[Unicode(false)]
+	public string Matricula { get; set; } = null!;
 
-    [Column("descripcion")]
-    [StringLength(500)]
-    public string? Descripcion { get; set; }
+	[Column("descripcion")]
+	[StringLength(500)]
+	public string? Descripcion { get; set; }
 
-    [Column("disponible")]
-    public bool? Disponible { get; set; }
+	[Column("disponible")]
+	public bool? Disponible { get; set; }
 
-    [ForeignKey("IdTipo")]
-    [InverseProperty("Vehiculos")]
-    public virtual TiposCatalogo IdTipoNavigation { get; set; } = null!;
+	[Column("img")]
+	[StringLength(500)]
+	public string? Img { get; set; }
 
-    [InverseProperty("IdProdNavigation")]
-    public virtual ICollection<ImgVehiculo> ImgVehiculos { get; set; } = new List<ImgVehiculo>();
+	[ForeignKey("IdTipo")]
+	[InverseProperty("Vehiculos")]
+	public virtual TiposCatalogo IdTipoNavigation { get; set; } = null!;
 
-    [InverseProperty("IdProdNavigation")]
-    public virtual ICollection<PeticionCompra> PeticionCompras { get; set; } = new List<PeticionCompra>();
+	[InverseProperty("IdProdNavigation")]
+	public virtual ICollection<PeticionCompra> PeticionCompras { get; set; } = new List<PeticionCompra>();
 
-    [InverseProperty("IdProdNavigation")]
-    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
+	[InverseProperty("IdProdNavigation")]
+	public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

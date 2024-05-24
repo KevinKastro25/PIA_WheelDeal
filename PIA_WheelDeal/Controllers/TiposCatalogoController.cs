@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,23 +9,22 @@ using PIA_WheelDeal.Models.dbModels;
 
 namespace PIA_WheelDeal.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class TiposCatalogoesController : Controller
+    public class TiposCatalogoController : Controller
     {
         private readonly BaseDeGatosContext _context;
 
-        public TiposCatalogoesController(BaseDeGatosContext context)
+        public TiposCatalogoController(BaseDeGatosContext context)
         {
             _context = context;
         }
 
-        // GET: TiposCatalogoes
+        // GET: TiposCatalogo
         public async Task<IActionResult> Index()
         {
             return View(await _context.TiposCatalogos.ToListAsync());
         }
 
-        // GET: TiposCatalogoes/Details/5
+        // GET: TiposCatalogo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,13 +42,13 @@ namespace PIA_WheelDeal.Controllers
             return View(tiposCatalogo);
         }
 
-        // GET: TiposCatalogoes/Create
+        // GET: TiposCatalogo/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TiposCatalogoes/Create
+        // POST: TiposCatalogo/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +64,7 @@ namespace PIA_WheelDeal.Controllers
             return View(tiposCatalogo);
         }
 
-        // GET: TiposCatalogoes/Edit/5
+        // GET: TiposCatalogo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,7 +80,7 @@ namespace PIA_WheelDeal.Controllers
             return View(tiposCatalogo);
         }
 
-        // POST: TiposCatalogoes/Edit/5
+        // POST: TiposCatalogo/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,7 +115,7 @@ namespace PIA_WheelDeal.Controllers
             return View(tiposCatalogo);
         }
 
-        // GET: TiposCatalogoes/Delete/5
+        // GET: TiposCatalogo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +133,7 @@ namespace PIA_WheelDeal.Controllers
             return View(tiposCatalogo);
         }
 
-        // POST: TiposCatalogoes/Delete/5
+        // POST: TiposCatalogo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

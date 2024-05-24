@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Detalles</h1>
+<h1>Details</h1>
 
 <div>
     <h4>Vehiculo</h4>
@@ -35,15 +35,26 @@
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
         <dt class = "col-sm-2">
-            Tipo de Vehiculo:
+            @Html.DisplayNameFor(model => model.Disponible)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdTipoNavigation.Tipo)
+            @Html.DisplayFor(model => model.Disponible)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdTipoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdTipoNavigation.IdTipo)
         </dd>
     </dl>
 </div>
 <div>
-    <p><a asp-controller="Home" asp-action="Index">Regresar</a></p>
-    
-    <a class="btn btn-primary" asp-controller="PeticionCompra" asp-action="Create" asp-route-id="?idprod=@Model.IdProd">Peticion de compra</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdProd">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

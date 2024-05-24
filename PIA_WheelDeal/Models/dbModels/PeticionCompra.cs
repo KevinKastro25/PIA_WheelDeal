@@ -25,13 +25,6 @@ public partial class PeticionCompra
     [Column("fecha", TypeName = "datetime")]
     public DateTime Fecha { get; set; }
 
-    [Column("id_empleado")]
-    public int? IdEmpleado { get; set; }
-
-    [ForeignKey("IdEmpleado")]
-    [InverseProperty("PeticionCompraIdEmpleadoNavigations")]
-    public virtual ApplicationUser? IdEmpleadoNavigation { get; set; }
-
     [ForeignKey("IdInd")]
     [InverseProperty("PeticionCompraIdIndNavigations")]
     public virtual ApplicationUser IdIndNavigation { get; set; } = null!;

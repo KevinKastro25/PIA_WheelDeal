@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using PIA_WheelDeal.Models.dbModels;
+using Microsoft.AspNetCore.Authorization;
 namespace PIA_WheelDeal.Controllers
 {
     public class HomeController : Controller
@@ -24,29 +25,20 @@ namespace PIA_WheelDeal.Controllers
 		}
 
 		// GET: Vehiculoes
-
 		public async Task<IActionResult> IndexAsync()
-        {
+		{
 			var baseDeGatosContext = _context.Vehiculos.Include(v => v.IdTipoNavigation);
 			return View(await baseDeGatosContext.ToListAsync());
-        }
+		}
 
-		public IActionResult Privacy()
+        //Vista sin restricciones
+		public IActionResult Acercade()
         {
             return View();
         }
 
-        public IActionResult Acercade()
-        {
-            return View();
-        }
-
-        public IActionResult Compra(int idprod)
-        {
-            
-			return View();
-        }
-
+        // Vista exclusiva de acceso para el ADMIN
+        [Authorize (Roles = "Admin")]
         public IActionResult Gerencia()
         {
             return View();
