@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace PIA_WheelDeal.Models.DTO
 {
-    public class VehiculoHR
+    public class VehiculoDTO
     {
         public int IdProd { get; set; }
         public string Nombre { get; set; } = null!;

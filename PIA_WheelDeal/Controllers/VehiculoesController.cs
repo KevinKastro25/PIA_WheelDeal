@@ -51,7 +51,7 @@ namespace PIA_WheelDeal.Controllers
 		// GET: Vehiculoes/Create
 		public IActionResult Create()
 		{
-			VehiculoHR vehiculotipo = new VehiculoHR
+			VehiculoDTO vehiculotipo = new VehiculoDTO
 			{
 				TiposCatalogo = new SelectList(_context.TiposCatalogos, "IdTipo", "Tipo")
 			};
@@ -63,7 +63,7 @@ namespace PIA_WheelDeal.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VehiculoHR vehiculo)
+        public async Task<IActionResult> Create(VehiculoDTO vehiculo)
         {
             if (ModelState.IsValid)
             {

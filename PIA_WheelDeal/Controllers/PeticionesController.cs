@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,8 @@ using PIA_WheelDeal.Models.ViewModels;
 
 namespace PIA_WheelDeal.Controllers
 {
-    public class PeticionesController : Controller
+	[Authorize]
+	public class PeticionesController : Controller
     {
         private readonly BaseDeGatosContext _context;
         public PeticionesController(BaseDeGatosContext context)

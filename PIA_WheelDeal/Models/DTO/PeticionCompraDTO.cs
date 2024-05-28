@@ -3,5 +3,5 @@
     public class PeticionCompraDTO
 	{ 
 		public int IdProd { get; set; }
-	}
+    }
 }
