@@ -2,6 +2,68 @@
     ViewData["Title"] = "Administración";
 }
 
-    <div class="container d-flex align-items-center justify-content-center p-4">
-        Somos una empresa
+@* SECCION CON LOS JAVASCRIPT QUE USARÁ ESTA VISTA *@
+@section Scripts {
+    <script>
+        $("#contenedorprincipal").addClass("container").removeClass("container-fluid")
+    </script>
+}
+
+@* SECCION CON LOS ESTILOS QUE USARÁ ESTA VISTA *@
+@section Styles {
+    <link rel="stylesheet" href="~/css/acercade.css" asp-append-version="true" />
+}
+
+<div class="row text-center" id="superior">
+    <div class="col pt-5">
+        <h3 class="border border-dark border-5">Acerca de Nosotros</h3>
     </div>
+    
+</div>
+<div class="row text-center rounded bg-dark border border-5">
+    <div class="col centradito">
+        <p>
+            En WheelDeal, nos apasiona el mundo automotriz.
+            Desde nuestra fundación en 1992, nos hemos dedicado a
+            ofrecer a nuestros clientes vehículos de la más alta calidad,
+            combinando tecnología avanzada, diseño innovador y un servicio al cliente excepcional.
+            Nos esforzamos por ser más que una simple concesionaria;
+            queremos ser tu socio de confianza en cada paso del camino hacia la adquisición del automóvil de tus sueños.
+        </p>
+    </div>
+</div>
+
+<div class="row text-center pt-5">
+    <div class="col pt-5">
+        <h3 class="border border-dark border-5">Misión</h3>
+    </div>
+</div>
+<div class="row text-center rounded bg-dark border border-5">
+    <div class="col centradito">
+        <p>
+            Nuestra misión es proporcionar a nuestros clientes una experiencia automotriz inigualable,
+            ofreciendo una amplia selección de vehículos que se adapten a las necesidades y deseos de cada persona.
+            Nos comprometemos a brindar un servicio personalizado, asesoría experta y soluciones financieras accesibles
+            para que cada cliente pueda disfrutar del automóvil perfecto con total tranquilidad y satisfacción.
+        </p>
+    </div>
+</div>
+
+
+<div class="row text-center pt-5">
+    <div class="col">
+        <h3 class="border border-dark border-5">Visión</h>
+    </div>
+</div>
+<div class="row text-center rounded bg-dark border border-5">
+    <div class="col centradito">
+        <p>
+            Nuestra visión es ser líderes en el mercado automotriz,
+            reconocidos por nuestra integridad, innovación y excelencia
+            en el servicio al cliente. Aspiramos a expandir nuestra presencia,
+            adoptando tecnologías sostenibles y prácticas comerciales responsables que
+            contribuyan al bienestar de nuestras comunidades y al cuidado del medio ambiente.
+            Queremos ser el referente de confianza donde cada cliente encuentre no solo un vehículo, sino una experiencia extraordinaria.
+        </p>
+    </div>
+</div>

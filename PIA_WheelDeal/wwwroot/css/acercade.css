@@ -1,0 +1,23 @@
+﻿body {
+    background-color: white
+}
+p{
+    color: white;
+}
+
+h3 {
+    font-size: 40px;
+    background: #ffc107
+}
+#superior{
+    margin-top: 30px;
+}
+
+.centradito{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+p{
+    font-size: 20px;
+}
