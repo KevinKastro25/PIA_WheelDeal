@@ -1,71 +1,72 @@
 ﻿@model IEnumerable<PIA_WheelDeal.Models.dbModels.Vehiculo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inventario";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Matricula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Disponible)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Img)
-            </th>
-            <th>
-                Tipo
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Matricula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disponible)
-            </td>
-            <td>
-                    <img class="w-25" src="@Html.DisplayFor(modelItem => item.Img)" /> 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdProd">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdProd">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdProd">Delete</a>
-            </td>
-        </tr>
+@* SECCION CON LOS ESTILOS QUE USARÁ ESTA VISTA *@
+@section Styles {
+    <link rel="stylesheet" href="~/css/inventario.css" asp-append-version="true" />
 }
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col">
+        <h1>Inventario</h1>
+    </div>
+    <div class="col text-end">
+        <p>
+            <a class="btn btn-warning negrito mt-2 border border-dark border-2" asp-action="Create">Añadir Nuevo Producto</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3 id ="si">Disponibles</h3>
+        @foreach (var item in Model)
+        {
+            @if (item.Disponible == true)
+            {
+                <div class="row">
+                    <div class="card" style="width: 20rem; height: 50%;">
+                        <img src="@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
+                            <p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
+                            <p class="card-text"><strong>@Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)</strong></p>
+                            <p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdProd">Edit</a> |
+                            <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.IdProd">Details</a> |
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdProd">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="col">
+        <h3 id="nel">No Disponibles</h3>
+        @foreach (var item in Model)
+        {
+            @if (item.Disponible == false)
+            {
+                <div class="row">
+                    <div class="card" style="width: 20rem; height: 50%;">
+                        <img src="@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
+                            <p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
+                            <p class="card-text"><strong>@Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)</strong></p>
+                            <p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdProd">Edit</a> |
+                            <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.IdProd">Details</a> |
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdProd">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

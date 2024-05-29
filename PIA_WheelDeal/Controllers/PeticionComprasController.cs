@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PIA_WheelDeal.Models.dbModels;
+using PIA_WheelDeal.Models.DTO;
 
 namespace PIA_WheelDeal.Controllers
 {
@@ -62,11 +64,20 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha")] PeticionCompra peticionCompra)
+        public async Task<IActionResult> Create(SolicitudDTO peticionCompra)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(peticionCompra);
+                PeticionCompra peticionCompra1 = new PeticionCompra
+                {
+                    IdInd = peticionCompra.IdInd,
+                    IdProd = peticionCompra.IdProd,
+                    IdStatus = peticionCompra.IdStatus,
+                    Fecha = peticionCompra.Fecha
+
+                };
+
+                _context.Add(peticionCompra1);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -100,7 +111,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPeticion,IdInd,IdProd,IdStatus,Fecha")] PeticionCompra peticionCompra)
+        public async Task<IActionResult> Edit(int id, SolicitudDTO peticionCompra)
         {
             if (id != peticionCompra.IdPeticion)
             {
@@ -109,9 +120,20 @@ namespace PIA_WheelDeal.Controllers
 
             if (ModelState.IsValid)
             {
+
+                PeticionCompra peticionCompra2 = new PeticionCompra
+                {
+                    IdPeticion = peticionCompra.IdPeticion,
+                    IdInd = peticionCompra.IdInd,
+                    IdProd = peticionCompra.IdProd,
+                    IdStatus = peticionCompra.IdStatus,
+                    Fecha = peticionCompra.Fecha
+
+                };
+
                 try
                 {
-                    _context.Update(peticionCompra);
+                    _context.Update(peticionCompra2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

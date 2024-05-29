@@ -45,17 +45,15 @@
 				</div>
 				<div class="row p-0 bg-dark text-white">
 					<ul>
-						<li class="pt-2 pb-2 mb-1 mt-3 border border-3 border-warning text-center rounded">
-							Estadisticas
+						
+						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
+							<a class="btn btn-dark w-100" asp-controller="PeticionCompras" asp-action="Index">Solicitudes</a>
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-							<a asp-controller="PeticionCompras" asp-action="Index">Solicitudes</a>
+							<a class="btn btn-dark w-100" asp-controller="Ventas" asp-action="Index">Ventas</a>
 						</li>
 						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-							<a asp-controller="Ventas" asp-action="Index">Ventas</a>
-						</li>
-						<li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-							<a asp-controller="Home" asp-action="Gerencia">Gerencia</a>
+							<a class="btn btn-dark w-100" asp-controller="Home" asp-action="Gerencia">Gerencia</a>
 						</li>
 					</ul>
 				</div>
@@ -78,10 +76,10 @@
 								<div class="card-body">
 									<h5 class="card-title"><strong>@Html.DisplayFor(modelItem => item.Nombre)</strong></h5>
 									<p class="card-text"><strong>$@Html.DisplayFor(modelItem => item.Precio)</strong></p>
-									<p class="card-text">Tipo:<strong>@Html.DisplayFor(modelItem => item.IdTipo)</strong></p>
+									<p class="card-text"><strong>@Html.DisplayFor(modelItem => item.IdTipoNavigation.Tipo)</strong></p>
 									<p class="card-text">Matricula: @Html.DisplayFor(modelItem => item.Matricula)</p>
 									<p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
-									<a class="btn btn-primary compra" asp-controller="Peticiones" asp-action="Index" asp-route-id="@item.IdProd">Comprar</a>
+									<a class="btn btn-dark compra" asp-controller="Peticiones" asp-action="Index" asp-route-id="@item.IdProd">Comprar</a>
 								</div>
 							</div>
 						</div>

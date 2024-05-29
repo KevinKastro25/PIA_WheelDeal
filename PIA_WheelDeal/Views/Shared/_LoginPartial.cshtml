@@ -6,11 +6,11 @@
 {
     <ul>
         <li class="pt-2 pb-2 mb-1 mt-3 border border-3 border-warning text-center rounded">
-            <a class="text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Mi Perfil</a>
+            <a class="text-white btn btn-dark w-100" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Mi Perfil</a>
         </li>
         <li class="pt-2 pb-2 mb-1 border border-3 border-dark text-center rounded bg-warning">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="btn text-dark p-0 text-center">Cerrar Sesion</button>
+                <button type="submit" class="btn text-dark p-0 text-center w-100">Cerrar Sesion</button>
             </form>
         </li>
     </ul>
@@ -19,10 +19,10 @@ else
 {   
     <ul>
     <li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-        <a class="text-white" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesion</a>
+            <a class="text-white btn btn-dark w-100" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesion</a>
     </li>
     <li class="pt-2 pb-2 mb-1 border border-3 border-warning text-center rounded">
-        <a class="text-white" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+            <a class="text-white btn btn-dark w-100" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
     </li>
     </ul>
 }

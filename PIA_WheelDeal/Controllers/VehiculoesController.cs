@@ -107,7 +107,7 @@ namespace PIA_WheelDeal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProd,Nombre,IdTipo,Precio,Matricula,Descripcion,Disponible,Img")] Vehiculo vehiculo)
+        public async Task<IActionResult> Edit(int id, VehiculoDTO vehiculo)
         {
             if (id != vehiculo.IdProd)
             {

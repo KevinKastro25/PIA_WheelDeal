@@ -18,6 +18,8 @@ namespace PIA_WheelDeal.Controllers
             _context = context;
         }
 
+
+
         //GETEAR LOS PARAMETROS DEL VEHICULO SELECCIONADO
         public async Task<IActionResult> Index(int? id)
         {
@@ -37,7 +39,17 @@ namespace PIA_WheelDeal.Controllers
             {
                 Peticion = new PeticionCompraDTO()
                 {
-                    IdProd = vehiculo.IdProd
+                    IdProd = vehiculo.IdProd,
+
+                },
+
+                Producto = new VehiculoDTO()
+                {
+                    Nombre = vehiculo.Nombre,
+                    Precio = vehiculo.Precio,
+                    Matricula = vehiculo.Matricula,
+                    Descripcion = vehiculo.Descripcion,
+                    Img = vehiculo.Img
                 }
             };
             return View(peticion2);

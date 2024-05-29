@@ -1,0 +1,23 @@
+﻿body {
+}
+
+.negrito{
+    font-weight: bold;
+}
+
+.card {
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+#si {
+    color: white;
+    background: green;
+    padding: 10px;
+}
+
+#nel {
+    color: white;
+    background: red;
+    padding: 10px;
+}
